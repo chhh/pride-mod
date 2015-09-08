@@ -40,6 +40,8 @@ public class PSIModDataAccessController extends AbstractDataAccessController{
 
     private final String FORMULA_TAG = "Formula:";
 
+    private final String DIFF_FORMULA_TAG = "DiffFormula:";
+
     private final String ORIGIN_TAG  = "Origin:";
 
     private final String SOURCE_TAG  = "Source";
@@ -90,6 +92,7 @@ public class PSIModDataAccessController extends AbstractDataAccessController{
             Collection<Object> xrefs = frame.getTagValues(XREF_TAG);
             Double averageDeltaMass  = null;
             Double monoDeltaMass     = null;
+            String diffFormula = null;
             String formula = null;
 
             String source  = null;
@@ -106,6 +109,9 @@ public class PSIModDataAccessController extends AbstractDataAccessController{
 
                     if(((Xref)xref).getIdref().equalsIgnoreCase(FORMULA_TAG))
                         formula = ((Xref)xref).getAnnotation();
+
+                    if(((Xref)xref).getIdref().equalsIgnoreCase(DIFF_FORMULA_TAG))
+                        diffFormula = ((Xref)xref).getAnnotation();
 
                     if(((Xref)xref).getIdref().equalsIgnoreCase(SOURCE_TAG))
                         source = ((Xref)xref).getAnnotation();
@@ -147,7 +153,7 @@ public class PSIModDataAccessController extends AbstractDataAccessController{
                     parentPTMs.add((Comparable)object);
             }
 
-            PSIModPTM ptm = new PSIModPTM(id,name,description,monoDeltaMass,averageDeltaMass,specificityList,formula,synonyms,source, parentPTMs, obsolete);
+            PSIModPTM ptm = new PSIModPTM(id,name,description,monoDeltaMass,averageDeltaMass,specificityList,diffFormula,synonyms,source, parentPTMs, obsolete);
             ptmMap.put(id, ptm);
         }
     }
