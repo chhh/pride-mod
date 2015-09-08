@@ -36,11 +36,11 @@ public class ModReader {
      */
     private static InputStream prideModdUrl = ModReader.class.getClassLoader().getResourceAsStream("pride_mods.xml");
 
-    private static UnimodDataAccessController unimodController;
+    public static UnimodDataAccessController unimodController;
 
-    private static PSIModDataAccessController psiModController;
+    public static PSIModDataAccessController psiModController;
 
-    private static PRIDEModDataAccessController prideModController;
+    public static PRIDEModDataAccessController prideModController;
 
     private volatile static ModReader instance = new ModReader();
 
@@ -61,8 +61,8 @@ public class ModReader {
                 if(psiModUrl!= null){
                     psiModUrl.close();
                 }
-                if(psiModUrl!= null){
-                    psiModUrl.close();
+                if(prideModdUrl!= null){
+                    prideModdUrl.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
